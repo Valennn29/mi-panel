@@ -4,7 +4,7 @@
    - Actualización: una versión nueva queda "en espera" hasta que el usuario toca "Actualizar" (así nunca
      se queda atrapado en una versión vieja ni se recarga en medio de una carga de datos).
    Al publicar cambios, subí VERSION. */
-const VERSION = 'mi-panel-1.3.0';
+const VERSION = 'mi-panel-1.3.1';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'guia.html', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

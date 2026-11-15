@@ -195,7 +195,7 @@ details.more summary{min-height:44px;display:flex;align-items:center;color:var(-
 @media (min-width:700px){#fab{right:calc(50% - 300px)}}
 body.sheet-open #fab,body.sheet-open #tabbar{visibility:hidden}
 /* ============ Sheet ============ */
-#sheet-root{position:fixed;inset:0;z-index:50;pointer-events:none}
+#sheet-root{position:fixed;left:0;right:0;top:var(--vvt,0px);height:var(--vvh,100dvh);z-index:50;pointer-events:none}
 .scrim{position:absolute;inset:0;background:rgba(10,12,15,.45);opacity:0;transition:opacity .18s;pointer-events:auto}
 .sheet{position:absolute;left:0;right:0;bottom:0;margin:0 auto;max-width:640px;background:var(--surface);
   border-radius:26px 26px 0 0;max-height:calc(var(--vvh) * .94);display:flex;flex-direction:column;pointer-events:auto;
@@ -327,6 +327,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent)}
 .badge.on{color:var(--ink);border:1px solid color-mix(in srgb,#E8833A 45%,transparent);background:color-mix(in srgb,#E8833A 12%,transparent)}
 .badge.on .bi{color:#E8833A}
 @media (prefers-reduced-motion: reduce){.anim .rise,.anim .wd .dot,.anim .col .b,.flame svg{animation:none}}
+
+/* ============ Teclado: nada queda tapado ============ */
+input,select,textarea{scroll-margin:96px 0 96px}
+body.kb #tabbar,body.kb #fab{display:none}
+body.kb #view{padding-bottom:calc(var(--kb,0px) + 120px)}
+.sheet .body{padding-bottom:calc(24px + var(--sab))}
+body.kb .sheet .body{padding-bottom:28px}
+.sheet{background:color-mix(in srgb,var(--surface) 93%,transparent)}
 </style>
 </head>
 <body>
@@ -351,7 +359,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent)}
    manifest.webmanifest, sw.js y config.js van aparte porque el navegador los pide así.
    ===================================================================== */
 (() => {
-const APP_VERSION = '1.3.0';
+const APP_VERSION = '1.3.1';
 const SCHEMA_VERSION = 1;
 const MP = (window.MP = { version: APP_VERSION });
 const $ = (s, r = document) => r.querySelector(s);
@@ -895,14 +903,26 @@ document.addEventListener('click', e => {
   const fn = ACT[t.dataset.act];
   if (fn) { const r = fn(t, e); if (r && r.catch) r.catch(err => { console.warn('acción falló:', err && err.message); UI.toast('Algo salió mal. Probá de nuevo.'); }); }
 });
-document.addEventListener('focusin', e => {
-  if (e.target.matches('input,select,textarea') && e.target.closest('.sheet,#view')) setTimeout(() => e.target.scrollIntoView({ block: 'center', behavior: 'smooth' }), 250);
-});
+/* Teclado de iOS: la ventana visible (visualViewport) se achica pero la “layout viewport” no. Se sigue a la visible para que las hojas
+   queden por encima del teclado y el campo enfocado nunca quede tapado. */
+const isField = el => el && el.matches && el.matches('input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea');
+const revealField = () => { const a = document.activeElement; if (isField(a) && a.closest('.sheet,#view')) a.scrollIntoView({ block: 'center', behavior: 'smooth' }); };
+document.addEventListener('focusin', e => { if (isField(e.target)) { setTimeout(revealField, 120); setTimeout(revealField, 420); } });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') UI.closeSheet(); });
 if (window.visualViewport) {
-  const upd = () => document.documentElement.style.setProperty('--vvh', window.visualViewport.height + 'px');
-  window.visualViewport.addEventListener('resize', upd); upd();
+  const vv = window.visualViewport, rootEl = document.documentElement;
+  let lastKb = 0;
+  const upd = () => {
+    const kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+    rootEl.style.setProperty('--vvh', vv.height + 'px'); rootEl.style.setProperty('--vvt', vv.offsetTop + 'px'); rootEl.style.setProperty('--kb', kb + 'px');
+    document.body.classList.toggle('kb', kb > 100);
+    if (Math.abs(kb - lastKb) > 40) { lastKb = kb; setTimeout(revealField, 60); }
+  };
+  vv.addEventListener('resize', upd); vv.addEventListener('scroll', upd); upd();
 }
+/* Sin sugerencias de “Autorrellenar contacto”: ningún campo de la app es un dato de contacto, salvo los que declaran su propio autocomplete */
+const noAutofill = root => (root || document).querySelectorAll('input:not([autocomplete]),textarea:not([autocomplete])').forEach(el => { if (el.type !== 'checkbox' && el.type !== 'radio') el.setAttribute('autocomplete', 'off'); });
+new MutationObserver(() => noAutofill()).observe(document.body, { childList: true, subtree: true }); noAutofill();
 ACT['sheet-close'] = () => UI.closeSheet();
 ACT.tab = el => { const v = el.dataset.v; if (route.view === v) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } UI.go(v); };
 ACT.back = () => UI.go('more');
