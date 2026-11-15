@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi Panel · Guía de instalación y uso</title>
+<style>
+:root{--bg:#F1F2F4;--s:#fff;--ink:#16181C;--ink2:#586069;--line:#E1E4E8;--acc:#1F6F78;--warn:#9A5A08;--warnbg:#FBF0DC;--ok:#1B7448;--okbg:#E1F3E9;--bad:#B3261E;--badbg:#FCE9E7}
+@media(prefers-color-scheme:dark){:root{--bg:#0D0F12;--s:#171A1F;--ink:#F2F3F5;--ink2:#A6ADB8;--line:#2A2F37;--acc:#5CC2CC;--warn:#E5A84B;--warnbg:#3A2D14;--ok:#69D29B;--okbg:#173226;--bad:#FF8B82;--badbg:#3D1F1D}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;padding:max(16px,env(safe-area-inset-top)) 18px 60px}
+main{max-width:720px;margin:0 auto}
+h1{font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:18px 0 6px}
+h2{font-size:23px;letter-spacing:-.01em;margin:38px 0 10px}
+h3{font-size:18px;margin:22px 0 6px}
+p,li{max-width:68ch}
+.lead{color:var(--ink2);font-size:18px}
+nav{background:var(--s);border:1px solid var(--line);border-radius:16px;padding:6px 16px;margin:22px 0}
+nav a{display:block;color:var(--acc);text-decoration:none;padding:9px 0;font-weight:600}
+nav a+a{border-top:1px solid var(--line)}
+code{background:var(--s);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.92em;word-break:break-all}
+pre{background:var(--s);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow:auto;font-size:14.5px}
+.box{border-radius:14px;padding:12px 16px;margin:14px 0}
+.box.ok{background:var(--okbg);color:var(--ok)}.box.warn{background:var(--warnbg);color:var(--warn)}.box.bad{background:var(--badbg);color:var(--bad)}
+.box p{margin:6px 0}
+table{border-collapse:collapse;width:100%;background:var(--s);border-radius:12px;overflow:hidden;font-size:15.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink2);font-weight:600}
+ol li,ul li{margin:5px 0}
+a{color:var(--acc)}
+.small{color:var(--ink2);font-size:15px}
+</style>
+</head>
+<body><main>
+<h1>Mi Panel</h1>
+<p class="lead">Guía de instalación y uso · versión 1.3.0. Tu día, tareas, calendario, entrenamiento, finanzas y listas en una app web para iPhone, con los datos guardados solo en tu teléfono.</p>
+
+<nav aria-label="Contenido">
+<a href="#estado">1. Qué funciona hoy y qué falta</a>
+<a href="#archivos">2. Qué hay en la carpeta (y por qué)</a>
+<a href="#probar">3. Probarla en tu computadora</a>
+<a href="#iphone">4. Instalarla en el iPhone</a>
+<a href="#google">5. Conectar Google Calendar (paso a paso)</a>
+<a href="#uso">6. Uso rápido por panel</a>
+<a href="#cobros">7. Fechas de cobro y feriados bancarios</a>
+<a href="#recordatorios">8. Recordatorios (cumpleaños y cobros)</a>
+<a href="#datos">9. Tus datos, respaldos y privacidad</a>
+<a href="#pruebas">10. Pruebas realizadas (y las que no)</a>
+<a href="#limites">11. Limitaciones reales</a>
+<a href="#futuro">12. Ampliaciones opcionales</a>
+</nav>
+
+<div class="box ok"><p><b>Novedad 1.3.0 – Inicio con gráficos y sistema de motivación:</b> el Inicio suma una tarjeta de racha de entrenamiento, el gráfico “Tu semana” (tareas por día y días entrenados), sesiones por semana y barras de avance en finanzas, con animaciones suaves al entrar (se desactivan con “Reducir movimiento”). En Entrenar hay una pestaña nueva, <b>Racha</b>, con racha actual y mejor racha, nivel, insignias y sesiones por semana.</p>
+<p><b>Cómo cuenta la racha:</b> un día es “previsto” si tu rutina tiene ejercicios ese día (si todavía no armaste rutina, de lunes a viernes). Entrenar un día previsto suma 1; faltar a uno ya pasado corta la racha; hoy no corta hasta que termina el día. <b>Sábado y domingo (o cualquier día sin entrenamiento previsto) no cortan la racha si no vas, y si entrenás suman “de más”.</b> Siempre podés registrar una sesión libre.</p>
+<p><b>Barra inferior:</b> ahora es Inicio, Finanzas, Calendario, Entrenar y Más. Tareas pasó a Más (y a “Ver todas” en el Inicio). El color de acento es más suave.</p></div>
+<div class="box ok"><p><b>Novedad 1.2.0 – Rediseño completo:</b> todas las pantallas usan materiales translúcidos con desenfoque sobre un fondo con degradados, mayor contraste de texto (tinta más oscura, acento más profundo), títulos más grandes, hojas y barra inferior de vidrio, botones con relieve y campos de formulario legibles. Con “Reducir transparencia” o “Aumentar contraste” activados en iOS, todo pasa a fondo sólido.</p></div>
+<div class="box ok"><p><b>Novedad 1.1.0 – Inicio rediseñado:</b> saludo con tu nombre (editable en Ajustes → Perfil y objetivos), una frase del día, el anillo “Tu día” (tareas de hoy + entrenamiento planificado), la sugerencia “Empezá por…”, tus objetivos (entrenamientos por semana, ahorro del mes frente a la meta, tareas completadas) y una racha de días con actividad. Tarjetas translúcidas con desenfoque estilo Apple; si activás “Reducir transparencia” en iOS, pasan a fondo sólido. El objetivo semanal arranca en 3 sesiones y lo cambiás en Ajustes. Las frases son textos propios; la skill de diseño de Apple de GitHub no se pudo descargar completa (el sitio bloquea la descarga), así que apliqué sus principios a partir de un resumen.</p></div>
+<h2 id="estado">1. Qué funciona hoy y qué falta</h2>
+<div class="box ok"><p><b>Funciona sin cuentas ni conexión (verificado en pruebas automáticas):</b> Inicio, Tareas (con repetición, rutinas, posponer, deshacer), Entrenamiento (rutina semanal, sesiones, peso corporal, estadísticas), Finanzas (ingresos esperados vs. recibidos, gastos, suscripciones ARS/USD, ahorro), Listas, Ajustes, respaldo/restauración, modo claro/oscuro y modo sin conexión.</p></div>
+<div class="box warn"><p><b>Requiere que vos crees una credencial:</b> toda la conexión con Google Calendar (ver eventos, crear/editar, cumpleaños, recordatorios de cumpleaños y de cobro). El código está completo y se probó contra una simulación de la API de Google, pero <b>no se probó con una cuenta real de Google</b> porque no tengo (ni debo tener) tus credenciales. Hasta que cargues el Client ID, la app muestra “Google Calendar todavía no conectado” y no simula nada.</p></div>
+<div class="box bad"><p><b>Todavía no verificado:</b> la app no se probó en un iPhone físico (solo emulación en Chrome con el tamaño del iPhone 17 Pro Max) ni en Safari real. Probá los primeros días con cuidado y exportá un respaldo seguido.</p></div>
+<p><b>Pendiente / no incluido en esta entrega:</b> reordenar widgets del Inicio con arrastre (hoy se pueden ocultar/mostrar desde Ajustes), acciones rápidas configurables (hoy son fijas), calendario destino distinto del principal, medidas corporales opcionales, importación CSV, carga de ítems por voz y Web Push propio. Ver sección 12.</p>
+
+<h2 id="archivos">2. Qué hay en la carpeta (y por qué)</h2>
+<table>
+<tr><th>Archivo</th><th>Para qué sirve</th></tr>
+<tr><td><code>index.html</code></td><td>La app completa (pantallas, estilos y lógica). Es el entregable principal; también abre con doble clic para una vista previa local.</td></tr>
+<tr><td><code>manifest.webmanifest</code></td><td>Nombre, colores e íconos de la app instalada. El navegador lo exige como archivo aparte.</td></tr>
+<tr><td><code>sw.js</code></td><td>Service Worker: guarda la app en caché para que abra sin conexión y gestiona las actualizaciones. Un Service Worker tiene que ser un archivo propio; no puede ir dentro del HTML. Solo funciona desde HTTPS o localhost.</td></tr>
+<tr><td><code>config.js</code></td><td>Lugar opcional para el OAuth Client ID de Google (valor público). También se puede cargar desde Ajustes.</td></tr>
+<tr><td><code>icons/</code></td><td>Íconos de la app (192, 512, maskable y apple-touch).</td></tr>
+<tr><td><code>guia.html</code></td><td>Esta guía.</td></tr>
+<tr><td><code>pruebas/</code></td><td>Los scripts de prueba que se ejecutaron (opcional; requieren Playwright).</td></tr>
+</table>
+<p class="small">No hay claves, secretos ni credenciales en ningún archivo.</p>
+
+<h2 id="probar">3. Probarla en tu computadora</h2>
+<ol>
+<li>Descomprimí el ZIP en una carpeta.</li>
+<li>Abrí una terminal en esa carpeta y ejecutá: <pre>python3 -m http.server 8000</pre></li>
+<li>Abrí <code>http://localhost:8000</code> en Chrome o Safari. <code>localhost</code> sí permite service worker y Google Calendar.</li>
+</ol>
+<p class="small">Si abrís <code>index.html</code> con doble clic (dirección <code>file://</code>) la app funciona para todo lo local, pero Google Calendar y el modo sin conexión no están disponibles.</p>
+
+<h2 id="iphone">4. Instalarla en el iPhone</h2>
+<p>Para instalar la app hace falta que esté publicada en una dirección <b>HTTPS</b>. Cualquier hosting estático gratuito sirve (GitHub Pages, Netlify, Cloudflare Pages): subí <b>toda la carpeta tal cual</b>, sin modificar nada. Mi Panel no tiene servidor propio ni base de datos en la nube: el hosting solo entrega los archivos.</p>
+<ol>
+<li>En el iPhone, abrí la dirección HTTPS en <b>Safari</b>.</li>
+<li>Tocá <b>Compartir</b> (el cuadrado con la flecha) → <b>Agregar a pantalla de inicio</b>.</li>
+<li>Si aparece la opción <b>“Abrir como app web”</b>, dejala activada. Tocá <b>Agregar</b>.</li>
+<li>Abrí Mi Panel desde el ícono nuevo.</li>
+</ol>
+<div class="box warn"><p><b>Importante sobre tus datos:</b> en iOS, la app instalada en la pantalla de inicio puede tener su <b>propio almacenamiento, separado del de Safari</b>. Instalala primero y cargá tus datos <b>desde el ícono</b>. Si ya cargaste datos en Safari, usá Ajustes → Exportar respaldo y luego Importar en la app instalada.</p></div>
+<p>Esto <b>no es una app de App Store</b>: es una aplicación web instalada. Para que no se pierdan datos si el sistema libera espacio, usá Ajustes → “Pedir almacenamiento persistente” y exportá un respaldo de vez en cuando (por ejemplo, una vez por semana).</p>
+<h3>Actualizaciones</h3>
+<p>Cuando subas una versión nueva (subiendo el número <code>VERSION</code> en <code>sw.js</code>), la app avisa “Hay una versión nueva” con un botón <b>Actualizar</b>. No se recarga sola en medio de lo que estés haciendo.</p>
+
+<h2 id="google">5. Conectar Google Calendar (paso a paso)</h2>
+<p>No te voy a pedir contraseñas ni secretos. Lo único que necesitás es un <b>OAuth Client ID</b> (un valor público) de tu propio proyecto de Google Cloud:</p>
+<ol>
+<li>Entrá a <a href="https://console.cloud.google.com/" rel="noopener">console.cloud.google.com</a> con tu cuenta de Google y creá un proyecto nuevo (por ejemplo, “Mi Panel”).</li>
+<li><b>APIs y servicios → Biblioteca</b>: buscá <b>Google Calendar API</b> y tocá <b>Habilitar</b>.</li>
+<li><b>APIs y servicios → Pantalla de consentimiento de OAuth</b>: tipo de usuario <b>Externo</b>, completá el nombre y tu correo. En <b>Permisos (scopes)</b> agregá <code>https://www.googleapis.com/auth/calendar.events</code>. En <b>Usuarios de prueba</b> agregá tu propia cuenta de Google.</li>
+<li><b>APIs y servicios → Credenciales → Crear credenciales → ID de cliente de OAuth</b>. Tipo de aplicación: <b>Aplicación web</b>.</li>
+<li>En <b>Orígenes de JavaScript autorizados</b> agregá las direcciones <b>exactas</b>, sin barra final y sin ruta: <code>http://localhost:8000</code> y <code>https://tu-sitio.ejemplo.com</code> (la de tu hosting). Un error típico (<code>origin_mismatch</code>) significa que el esquema, el dominio o el puerto no coinciden letra por letra.</li>
+<li>No hace falta “URI de redireccionamiento”. <b>No descargues ni uses el “client secret”</b>: esta app no lo necesita.</li>
+<li>Copiá el <b>ID de cliente</b> (termina en <code>.apps.googleusercontent.com</code>) y pegalo en la app: <b>Más → Ajustes → Google Calendar → OAuth Client ID</b>. (Alternativa: ponelo en <code>config.js</code> antes de publicar.)</li>
+<li>Andá a <b>Calendario → Conectar</b>. La app te explica el permiso en castellano y recién después abre Google. Mientras tu proyecto esté en modo “Prueba”, Google muestra una advertencia de “app no verificada”: es normal para un uso personal; elegí tu cuenta y continuá.</li>
+</ol>
+<h3>Cómo se comporta la conexión</h3>
+<ul>
+<li>El permiso pedido es <b>solo</b> ver, crear y editar eventos. No se piden contactos, correo ni nada más.</li>
+<li>El token de acceso vive <b>solo en la memoria</b> de la pantalla: nunca se guarda en el dispositivo, ni en respaldos, ni en la URL. Por eso, al cerrar y volver a abrir la app hay que tocar <b>Conectar</b> otra vez (suele ser un solo toque). Los eventos de la última sincronización se siguen viendo sin conexión.</li>
+<li>Se sincroniza al conectar y al tocar <b>Sincronizar</b>. iOS no permite sincronización en segundo plano en una app web.</li>
+<li>Los errores se muestran con texto claro: permiso denegado, sesión vencida, sin internet, cambios en conflicto.</li>
+<li>Desconectar revoca el token y borra la autorización de memoria.</li>
+</ul>
+
+<h2 id="uso">6. Uso rápido por panel</h2>
+<ul>
+<li><b>Botón +</b>: crea una tarea, gasto, cobro, sesión de entrenamiento o ítem de lista en pocos toques.</li>
+<li><b>Inicio</b>: una frase resume tu día; debajo, próximo evento, tareas de hoy, entrenamiento, cumpleaños, próximos cobros y finanzas. Cada importe es tocable y abre el detalle que lo forma, con el período y qué incluye.</li>
+<li><b>Tareas</b>: tocá el círculo para completar (con “Deshacer”). Para posponer, abrí la tarea. “Agregar a Google Calendar” aparece dentro de la tarea y nunca se hace solo; se guarda el ID del evento para no duplicar.</li>
+<li><b>Calendario</b>: vistas Día, Semana, Mes y Agenda. Lo de Google y lo creado por la app se distinguen por color y etiqueta. El botón <b>Próximos cumpleaños</b> muestra el siguiente destacado y el listado a 30/60/90 días.</li>
+<li><b>Entrenar</b>: “Armar mi rutina” es un asistente corto (vos escribís los ejercicios de cada día; no hay plan por defecto). La sesión en curso se guarda sola y sobrevive a un cierre de la app. Estadísticas con la fórmula explicada debajo de cada gráfico.</li>
+<li><b>Finanzas</b> (Más → Finanzas): Resumen, Gastos, Ingresos, Suscripciones y Ahorro. Todo es manual. Lo esperado es proyección; solo lo que registrás cuenta como real.</li>
+<li><b>Listas</b>: escribí y tocá Agregar; al tildar un ítem pasa a “Completados” sin desaparecer.</li>
+</ul>
+<h3>Cómo evita duplicar tarjeta y suscripciones</h3>
+<p>Hay dos métodos (Finanzas → Gastos → Seguimiento de tarjeta): <b>Simple</b> (registrás el pago del resumen y las suscripciones pagadas con tarjeta se muestran como informativas, sin sumarse otra vez) y <b>Detallado</b> (los consumos cuentan y el pago del resumen cancela saldo, sin sumarse). No se mezclan en silencio. Los pesos y los dólares nunca se suman entre sí; un equivalente en pesos solo aparece si cargás vos un tipo de cambio manual (valor, fecha y referencia).</p>
+
+<h2 id="cobros">7. Fechas de cobro y feriados bancarios</h2>
+<ul>
+<li><b>Ingreso principal</b>: último día del mes; si no es hábil bancario, se retrocede hasta el día hábil anterior.</li>
+<li><b>Ingreso secundario</b>: día 15; si es sábado, domingo o feriado bancario, se avanza al siguiente día hábil.</li>
+<li>Los cálculos usan la zona <code>America/Argentina/Buenos_Aires</code> y el calendario de feriados bancarios cargado en Ajustes.</li>
+<li><b>2026</b> viene cargado con la lista del BCRA que me indicaste (<a href="https://www.bcra.gob.ar/consulta-feriados-bancarios-2026/" rel="noopener">fuente</a>), editable. No se reutiliza para otros años.</li>
+<li><b>Años sin lista cargada</b> (por ejemplo, 2027): el cálculo es <b>provisorio</b> (solo fines de semana) y se marca como tal en pantalla y en los eventos de Google. Cuando el BCRA publique el listado del año, entrá a <b>Ajustes → Feriados bancarios → Cargar otro año</b>, pegá las fechas (una por línea, <code>AAAA-MM-DD descripción</code>) y marcá “Confirmo que este calendario está completo”. Los cálculos y los recordatorios en Google se actualizan sin duplicarse. La app no puede descargar la lista sola desde el navegador.</li>
+<li>Los importes habituales de cada ingreso empiezan vacíos: los cargás vos. El recordatorio nunca registra el cobro por vos: tenés que tocar “Registrar cobro” con el importe real.</li>
+</ul>
+
+<h2 id="recordatorios">8. Recordatorios (cumpleaños y cobros)</h2>
+<p>Los avisos garantizados los entrega <b>Google Calendar</b>, incluso con Mi Panel cerrada. La app web no puede avisar sola en segundo plano en iPhone sin un servidor, así que no simula avisos con temporizadores.</p>
+<h3>Cumpleaños</h3>
+<ul>
+<li>Se detectan los eventos de tipo cumpleaños de Google (<code>eventTypes=birthday</code> y <code>birthdayProperties.type = birthday</code>) y, como respaldo, los eventos de día completo con recurrencia anual cuyo título empieza con “Cumpleaños de…”, “Cumpleaños:”, “Birthday of…” o “Birthday:”. Aniversarios, fechas personalizadas, “fiesta de cumpleaños” y eventos no relacionados no se cuentan. Las dudas aparecen en “Posibles coincidencias” para que las confirmes.</li>
+<li>No se muestran edades. Los cumpleaños del 29 de febrero se muestran en la fecha que Google devuelve para ese año (la app no la recalcula).</li>
+<li><b>Calendario → Próximos cumpleaños → Activar recordatorios de cumpleaños</b>: primero elegís anticipación y hora (sugerido: 1 día antes, 09:00), y la app te muestra cuántos eventos cambia y qué pasa con cada uno. Solo se modifica el campo de recordatorios; nombre, fecha y recurrencia no se tocan.</li>
+<li>Si un cumpleaños ya tiene recordatorios propios, se conservan y se suma uno. Si usa los <b>predeterminados</b> del calendario, Google no deja “sumar” sin reemplazarlos: la app te lo avisa y pide que lo confirmes con una casilla. Se guarda la configuración anterior para <b>Desactivar y restaurar</b>.</li>
+<li>“Verificar en Google” revisa que la configuración esté guardada. No prueba que haya llegado una notificación (eso lo hace Google).</li>
+</ul>
+<h3>Recordatorios de cobro</h3>
+<p><b>Ajustes → Agregar recordatorios de cobro a Google Calendar</b> crea un evento por cada fecha calculada de los próximos 12 meses (no una regla mensual, porque los días hábiles cambian), a las 09:00 hora Argentina con aviso emergente. Los eventos llevan una marca interna de Mi Panel: así se evitan duplicados aunque cambies de teléfono, y la app <b>solo</b> toca los eventos que ella creó. Nunca borra ni modifica eventos tuyos. Si activás “mantener al día”, el horizonte de 12 meses se renueva en cada sincronización.</p>
+
+<h2 id="datos">9. Tus datos, respaldos y privacidad</h2>
+<ul>
+<li>Todo se guarda en IndexedDB del navegador de <b>este</b> teléfono. No hay cuenta, servidor, nube ni analítica.</li>
+<li>Lo único que sale del teléfono es lo que le pedís a Google Calendar (eventos y recordatorios). Tareas, finanzas, rutinas, peso y listas <b>no</b> se envían a nadie.</li>
+<li>Los eventos que leés de Google se guardan en una caché local para verlos sin conexión (la caché no entra en los respaldos).</li>
+<li><b>Si borrás los datos del sitio en Safari o desinstalás la app web, se pierden los datos.</b> Por eso: Ajustes → <b>Exportar respaldo completo (JSON)</b> con regularidad, y guardalo en Archivos o iCloud Drive.</li>
+<li><b>Restaurar</b> valida el archivo completo antes de tocar nada, muestra una vista previa (datos actuales vs. del respaldo), ofrece descargar un respaldo de lo actual primero y pide confirmación. Un archivo inválido o ajeno se rechaza sin cambiar nada.</li>
+<li><b>Borrar todo</b> pide doble confirmación (hay que escribir BORRAR).</li>
+<li>CSV de finanzas y de entrenamiento disponibles para abrir en una planilla.</li>
+<li>Los datos DEMO (opcionales) están marcados con la etiqueta DEMO y se borran con un toque sin afectar los reales.</li>
+</ul>
+
+<h2 id="pruebas">10. Pruebas realizadas (y las que no)</h2>
+<p>Ejecutadas con Chrome (emulación del tamaño del iPhone 17 Pro Max, 440 × 956, táctil, zona horaria Buenos Aires) sobre <code>localhost</code>:</p>
+<table>
+<tr><th>Qué</th><th>Resultado</th></tr>
+<tr><td>Lógica: fechas de cobro de los 12 meses de 2026 (calculadas a mano), 2027 provisorio, febrero bisiesto 2028, feriado extraordinario, feriado + fin de semana, centavos, formato ARS/USD, suscripciones/tarjeta sin duplicar (modo Simple y Detallado), ahorro (cambio de %, pausa, % propio del mes), clasificación de cumpleaños, volumen y mejor carga, validación de respaldos</td><td><b>82 de 82</b> correctas</td></tr>
+<tr><td>Flujos de pantalla: primera apertura vacía, crear/editar/completar/eliminar tareas con deshacer, persistencia al recargar, listas, sesión de entrenamiento (incluye recuperarla tras recargar), peso, finanzas, exportar/importar (archivo inválido, ajeno y cancelación), borrado total y restauración, DEMO, tema oscuro, escape de HTML (XSS)</td><td><b>45 de 45</b> correctas</td></tr>
+<tr><td>Google Calendar contra una <b>API simulada</b> (no la real): sin Client ID, permiso denegado, conexión, paginación, eventos con horario y de día completo, cumpleaños, recordatorios sin pisar datos existentes ni modificar otros campos, 24 recordatorios de cobro sin duplicados (y actualización al cargar un feriado nuevo), eventos ajenos intactos, conflictos con elección del usuario, token vencido, sin internet, desconexión</td><td><b>51 de 51</b> correctas</td></tr>
+<tr><td>Modo sin conexión: service worker instalado, app abierta con red cortada y datos locales disponibles</td><td>Verificado en Chrome (localhost)</td></tr>
+<tr><td>Tamaños táctiles (≥ 44 px), sin scroll horizontal en las 13 pantallas, vertical y apaisado, sin errores de consola</td><td>Verificado (las casillas de verificación pequeñas se activan tocando toda su fila de 48 px)</td></tr>
+</table>
+<div class="box bad"><p><b>No verificado:</b> iPhone físico y Safari real (teclado de iOS, Dynamic Island, instalación en pantalla de inicio); Google Calendar con credenciales y cuenta reales; VoiceOver; contraste medido con herramienta (se diseñó con colores de alto contraste, pero no se auditó formalmente). Los scripts de <code>pruebas/</code> reproducen todo lo anterior.</p></div>
+
+<h2 id="limites">11. Limitaciones reales</h2>
+<ul>
+<li>Sin Client ID de Google y sin HTTPS/localhost no hay integración con Google. La app lo dice y sigue funcionando.</li>
+<li>iOS no permite tareas en segundo plano en una app web: se sincroniza al abrir/conectar y al tocar el botón; los avisos garantizados salen de Google Calendar.</li>
+<li>El token de Google dura aproximadamente una hora y no se guarda: hay que reconectar al reabrir.</li>
+<li>Edición de eventos recurrentes: se edita solo la ocurrencia elegida.</li>
+<li>Los eventos de cumpleaños nativos de Google no se pueden editar desde la app (solo sus recordatorios, con consentimiento).</li>
+<li>Los eventos nuevos se guardan en el calendario principal.</li>
+<li>Los feriados de años futuros hay que cargarlos a mano (la app no descarga del BCRA).</li>
+<li>No hay recomendaciones de inversión, crédito ni impuestos: es una herramienta de organización.</li>
+</ul>
+
+<h2 id="futuro">12. Ampliaciones opcionales (no incluidas)</h2>
+<ul>
+<li><b>Web Push propio</b>: avisos aunque Mi Panel esté cerrada. Requiere un servidor que envíe los mensajes (y guardar allí una suscripción de tu dispositivo), con lo que deja de ser 100% local. Hoy se resuelve con los recordatorios de Google Calendar.</li>
+<li>Reordenar widgets con arrastre, acciones rápidas configurables, medidas corporales, importar CSV con vista previa, carga de ítems por voz, elegir otro calendario de destino (requiere un permiso adicional).</li>
+</ul>
+<p class="small">Mi Panel 1.3.0 · esquema de datos v1.</p>
+</main></body></html>
